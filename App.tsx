@@ -271,7 +271,7 @@ function App() {
           <Header isLoggedIn={false} onLoginClick={handleLoginClick} onLogout={() => {}} />
           <main>
             <Hero onCtaClick={handleLoginClick} />
-            <Pricing onChoosePlan={handleLoginClick} />
+            <Pricing onChoosePlan={handleLoginClick} currentUser={currentUser} />
           </main>
           {showAuthModal && (
             <Auth onSuccess={handleAuthSuccess} onCancel={() => setShowAuthModal(false)} />

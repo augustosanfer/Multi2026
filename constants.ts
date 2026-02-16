@@ -1,15 +1,25 @@
 import { RoleType } from './types';
 
-// --- TABELA 2025 ---
+// --- CONFIGURAÇÃO STRIPE (COLE SEUS LINKS AQUI) ---
+export const STRIPE_CONFIG = {
+  // Gere esses links em: Dashboard Stripe -> Payments -> Payment Links
+  PRO_MONTHLY_LINK: 'https://buy.stripe.com/test_00w9AM2js3V52hObPb04800', // Link para R$ 19,90
+  PRO_YEARLY_LINK: 'https://buy.stripe.com/test_00w3cocY69fp5u0aL704801',   // Link para R$ 199,90
+  
+  // Opcional: Chave Pública se decidir usar o Stripe.js no futuro
+  PUBLISHABLE_KEY: 'pk_test_sua_chave_aqui'
+};
+
+// --- TABELA VÁLIDA ATÉ 31/01/2025 (Primeira Imagem) ---
 const COMMISSION_DATA_2025 = [
   { project: 'Areya Barra', category: 'Faixa 1', liner: 339.15, closer: 339.15, ftb: 678.30 },
   { project: 'Areya Barra', category: 'Faixa 2', liner: 640.29, closer: 640.29, ftb: 1280.58 },
   { project: 'Areya Barra', category: 'Faixa 3', liner: 703.23, closer: 703.23, ftb: 1406.46 },
-  { project: 'Beach', category: '2 Semanas', liner: 452.8, closer: 452.8, ftb: 905.6 },
-  { project: 'Exclusive', category: '1Q – 2 Semanas', liner: 479.43, closer: 479.43, ftb: 958.86 },
-  { project: 'Exclusive', category: '1Q – 4 Semanas', liner: 1118.67, closer: 1118.67, ftb: 2237.34 },
-  { project: 'Exclusive', category: '2Q – 2 Semanas', liner: 692.51, closer: 692.51, ftb: 1385.02 },
-  { project: 'Exclusive', category: '2Q – 4 Semanas', liner: 1438.29, closer: 1438.29, ftb: 2876.58 },
+  { project: 'Beach', category: 'Faixa 1', liner: 452.8, closer: 452.8, ftb: 905.6 },
+  { project: 'Exclusive', category: '1 Quarto e 2 Semanas', liner: 479.43, closer: 479.43, ftb: 958.86 },
+  { project: 'Exclusive', category: '1 Quarto e 4 Semanas', liner: 1118.67, closer: 1118.67, ftb: 2237.34 },
+  { project: 'Exclusive', category: '2 Quartos e 2 Semanas', liner: 692.51, closer: 692.51, ftb: 1385.02 },
+  { project: 'Exclusive', category: '2 Quartos e 4 Semanas', liner: 1438.29, closer: 1438.29, ftb: 2876.58 },
   { project: 'Gran Garden', category: 'Faixa 1', liner: 977.45, closer: 977.45, ftb: 1954.90 },
   { project: 'Gran Garden', category: 'Faixa 2', liner: 1288.48, closer: 1288.48, ftb: 2576.96 },
   { project: 'Gran Valley', category: 'Faixa 1', liner: 817.76, closer: 817.76, ftb: 1635.52 },
@@ -26,9 +36,9 @@ const COMMISSION_DATA_2025 = [
   { project: 'Oikos', category: 'Faixa 2', liner: 361.06, closer: 361.06, ftb: 722.12 },
   { project: 'Oikos', category: 'Faixa 3', liner: 550.18, closer: 550.18, ftb: 1100.36 },
   { project: 'Oikos', category: 'Faixa 4', liner: 605.76, closer: 605.76, ftb: 1211.52 },
-  { project: 'Park', category: '1Q – 1 Semana', liner: 292.99, closer: 292.99, ftb: 585.98 },
-  { project: 'Park', category: '2Q – 1 Semana', liner: 386.21, closer: 386.21, ftb: 772.42 },
-  { project: 'Pipa Island', category: 'Faixa 1', liner: 404.35, closer: 404.35, ftb: 808.7 },
+  { project: 'Park', category: '1 Quarto e 1 Semana', liner: 292.99, closer: 292.99, ftb: 585.98 },
+  { project: 'Park', category: '2 Quartos e 1 Semana', liner: 386.21, closer: 386.21, ftb: 772.42 },
+  { project: 'Pipa Island', category: 'Faixa 1', liner: 404.35, closer: 404.35, ftb: 808.70 },
   { project: 'Pipa Island', category: 'Faixa 2', liner: 582.43, closer: 582.43, ftb: 1164.86 },
   { project: 'Pipa Island', category: 'Faixa 3', liner: 706.05, closer: 706.05, ftb: 1412.10 },
   { project: 'Pipa Island', category: 'Faixa 4', liner: 1052.51, closer: 1052.51, ftb: 2105.02 },
@@ -41,53 +51,53 @@ const COMMISSION_DATA_2025 = [
   { project: 'Premium', category: '1 Quarto', liner: 1039.83, closer: 1039.83, ftb: 2079.66 },
   { project: 'Premium', category: '2 Quartos', liner: 1507.54, closer: 1507.54, ftb: 3015.08 },
   { project: 'Premium', category: 'Smart (BL 02)', liner: 839.54, closer: 839.54, ftb: 1679.08 },
-  { project: 'Pyrenéus', category: '2 Semanas', liner: 532.7, closer: 532.7, ftb: 1065.40 },
+  { project: 'Pyrénées', category: '2 Semanas', liner: 532.70, closer: 532.70, ftb: 1065.40 },
 ];
 
-// --- TABELA 2026 ---
+// --- TABELA VÁLIDA A PARTIR DE 01/01/2026 (Segunda Imagem) ---
 const COMMISSION_DATA_2026 = [
-  { project: 'Areya Barra', category: 'Faixa 1', ftb: 431.07, liner: 359.23, closer: 359.23 },
-  { project: 'Areya Barra', category: 'Faixa 2', ftb: 813.83, liner: 678.19, closer: 678.19 },
-  { project: 'Areya Barra', category: 'Faixa 3', ftb: 893.83, liner: 744.86, closer: 744.86 },
-  { project: 'Beach', category: '2 Semanas', ftb: 620.66, liner: 479.60, closer: 479.60 },
-  { project: 'Exclusive', category: '1 Quarto / 2 Semanas', ftb: 507.81, liner: 507.81, closer: 507.81 },
-  { project: 'Exclusive', category: '1 Quarto / 4 Semanas', ftb: 1184.90, liner: 1184.90, closer: 1184.90 },
-  { project: 'Exclusive', category: '2 Quartos / 2 Semanas', ftb: 733.51, liner: 733.51, closer: 733.51 },
-  { project: 'Exclusive', category: '2 Quartos / 4 Semanas', ftb: 1523.44, liner: 1523.44, closer: 1523.44 },
-  { project: 'Gran Garden', category: 'Faixa 1', ftb: 1148.02, liner: 1035.32, closer: 1035.32 },
-  { project: 'Gran Garden', category: 'Faixa 2', ftb: 1535.45, liner: 1364.76, closer: 1364.76 },
-  { project: 'Gran Valley', category: 'Faixa 1', ftb: 907.63, liner: 907.63, closer: 907.63 },
-  { project: 'Gran Valley', category: 'Faixa 2', ftb: 1315.73, liner: 1315.73, closer: 1315.73 },
-  { project: 'Gran Valley', category: 'Faixa 3', ftb: 1502.65, liner: 1502.65, closer: 1502.65 },
-  { project: 'Gran Valley', category: 'Faixa 4', ftb: 1796.92, liner: 1796.92, closer: 1796.92 },
-  { project: 'Jeriquiá Dunas', category: 'Faixa 1', ftb: 344.92, liner: 344.92, closer: 344.92 },
-  { project: 'Jeriquiá Dunas', category: 'Faixa 2', ftb: 583.51, liner: 583.51, closer: 583.51 },
-  { project: 'Jeriquiá Dunas', category: 'Faixa 3', ftb: 802.28, liner: 802.28, closer: 802.28 },
-  { project: 'Jeriquiá', category: 'Faixa 1', ftb: 371.89, liner: 371.89, closer: 371.89 },
-  { project: 'Jeriquiá', category: 'Faixa 2', ftb: 638.60, liner: 638.60, closer: 638.60 },
-  { project: 'Jeriquiá', category: 'Faixa 3', ftb: 864.45, liner: 864.45, closer: 864.45 },
-  { project: 'Oikos', category: 'Faixa 1', ftb: 380.67, liner: 380.67, closer: 380.67 },
-  { project: 'Oikos', category: 'Faixa 2', ftb: 420.68, liner: 420.68, closer: 420.68 },
-  { project: 'Oikos', category: 'Faixa 3', ftb: 641.02, liner: 641.02, closer: 641.02 },
-  { project: 'Oikos', category: 'Faixa 4', ftb: 705.78, liner: 705.78, closer: 705.78 },
-  { project: 'Park', category: '1 Quarto / 1 Semana', ftb: 310.34, liner: 310.34, closer: 310.34 },
-  { project: 'Park', category: '2 Quartos / 1 Semana', ftb: 409.07, liner: 409.07, closer: 409.07 },
-  { project: 'Park', category: '1 Quarto / 4 Semanas', ftb: 1241.32, liner: 1241.32, closer: 1241.32 },
-  { project: 'Park', category: '2 Quartos / 4 Semanas', ftb: 1636.28, liner: 1636.28, closer: 1636.28 },
-  { project: 'Pipa Island', category: 'Faixa 1', ftb: 471.12, liner: 471.12, closer: 471.12 },
-  { project: 'Pipa Island', category: 'Faixa 2', ftb: 678.60, liner: 678.60, closer: 678.60 },
-  { project: 'Pipa Island', category: 'Faixa 3', ftb: 822.63, liner: 822.63, closer: 822.63 },
-  { project: 'Pipa Island', category: 'Faixa 4', ftb: 1226.30, liner: 1226.30, closer: 1226.30 },
-  { project: 'Porto 2 Life', category: 'Faixa 1', ftb: 730.64, liner: 730.64, closer: 730.64 },
-  { project: 'Porto 2 Life', category: 'Faixa 2', ftb: 971.95, liner: 971.95, closer: 971.95 },
-  { project: 'Porto 2 Life', category: 'Faixa 3', ftb: 1247.02, liner: 1247.02, closer: 1247.02 },
-  { project: 'Porto Alto', category: 'Faixa 1', ftb: 758.78, liner: 758.78, closer: 758.78 },
-  { project: 'Porto Alto', category: 'Faixa 2', ftb: 1055.27, liner: 1055.27, closer: 1055.27 },
-  { project: 'Porto Alto', category: 'Faixa 3', ftb: 1412.79, liner: 1412.79, closer: 1412.79 },
-  { project: 'Premium', category: '1 Quarto', ftb: 1101.39, liner: 1101.39, closer: 1101.39 },
-  { project: 'Premium', category: '2 Quartos', ftb: 1596.79, liner: 1596.79, closer: 1596.79 },
-  { project: 'Premium', category: 'Smart (BL 02)', ftb: 889.24, liner: 889.24, closer: 889.24 },
-  { project: 'Pyrenéus', category: '2 Semanas', ftb: 677.08, liner: 564.24, closer: 564.24 },
+  { project: 'Areya Barra', category: 'Faixa 1 (1 quarto e 1 semana)', liner: 359.23, closer: 359.23, ftb: 718.46 },
+  { project: 'Areya Barra', category: 'Faixa 2 (1 quarto e 2 semanas)', liner: 678.19, closer: 678.19, ftb: 1356.38 },
+  { project: 'Areya Barra', category: 'Faixa 3 (2 quartos e 1 semana)', liner: 744.86, closer: 744.86, ftb: 1489.72 },
+  { project: 'Beach', category: '2 Semanas', liner: 479.60, closer: 479.60, ftb: 959.20 },
+  { project: 'Exclusive', category: '1 Quarto e 2 Semanas', liner: 507.81, closer: 507.81, ftb: 1015.62 },
+  { project: 'Exclusive', category: '1 Quarto e 4 Semanas', liner: 1184.90, closer: 1184.90, ftb: 2369.80 },
+  { project: 'Exclusive', category: '2 Quartos e 2 Semanas', liner: 733.51, closer: 733.51, ftb: 1467.02 },
+  { project: 'Exclusive', category: '2 Quartos e 4 Semanas', liner: 1523.44, closer: 1523.44, ftb: 3046.88 },
+  { project: 'Gran Garden', category: 'Faixa 1', liner: 1035.32, closer: 1035.32, ftb: 2070.64 },
+  { project: 'Gran Garden', category: 'Faixa 2', liner: 1364.76, closer: 1364.76, ftb: 2729.52 },
+  { project: 'Gran Valley', category: 'Faixa 1', liner: 866.17, closer: 866.17, ftb: 1732.34 },
+  { project: 'Gran Valley', category: 'Faixa 2', liner: 1241.26, closer: 1241.26, ftb: 2482.52 },
+  { project: 'Gran Valley', category: 'Faixa 3', liner: 1413.06, closer: 1413.06, ftb: 2826.12 },
+  { project: 'Gran Valley', category: 'Faixa 4', liner: 1683.53, closer: 1683.53, ftb: 3367.06 },
+  { project: 'Jeriquiá Dunas', category: 'Faixa 1', liner: 313.57, closer: 313.57, ftb: 627.14 },
+  { project: 'Jeriquiá Dunas', category: 'Faixa 2', liner: 530.47, closer: 530.47, ftb: 1060.94 },
+  { project: 'Jeriquiá Dunas', category: 'Faixa 3', liner: 729.35, closer: 729.35, ftb: 1458.70 },
+  { project: 'Jeriquiá', category: 'Faixa 1', liner: 338.08, closer: 338.08, ftb: 676.16 },
+  { project: 'Jeriquiá', category: 'Faixa 2', liner: 580.55, closer: 580.55, ftb: 1161.10 },
+  { project: 'Jeriquiá', category: 'Faixa 3', liner: 785.87, closer: 785.87, ftb: 1571.74 },
+  { project: 'Oikos', category: 'Faixa 1', liner: 346.06, closer: 346.06, ftb: 692.12 },
+  { project: 'Oikos', category: 'Faixa 2', liner: 382.44, closer: 382.44, ftb: 764.88 },
+  { project: 'Oikos', category: 'Faixa 3', liner: 582.75, closer: 582.75, ftb: 1165.50 },
+  { project: 'Oikos', category: 'Faixa 4', liner: 641.62, closer: 641.62, ftb: 1283.24 },
+  { project: 'Park', category: '1 Quarto e 1 Semana', liner: 310.34, closer: 310.34, ftb: 620.68 },
+  { project: 'Park', category: '2 Quartos e 1 Semana', liner: 409.07, closer: 409.07, ftb: 818.14 },
+  { project: 'Park', category: '1 Quarto e 4 Semanas', liner: 1241.32, closer: 1241.32, ftb: 2482.64 },
+  { project: 'Park', category: '2 Quartos e 4 Semanas', liner: 1636.28, closer: 1636.28, ftb: 3272.56 },
+  { project: 'Pipa Island', category: 'Faixa 1', liner: 428.29, closer: 428.29, ftb: 856.58 },
+  { project: 'Pipa Island', category: 'Faixa 2', liner: 616.91, closer: 616.91, ftb: 1233.82 },
+  { project: 'Pipa Island', category: 'Faixa 3', liner: 747.85, closer: 747.85, ftb: 1495.70 },
+  { project: 'Pipa Island', category: 'Faixa 4', liner: 1114.82, closer: 1114.82, ftb: 2229.64 },
+  { project: 'Porto 2 Life', category: 'Faixa 1', liner: 663.61, closer: 663.61, ftb: 1327.22 },
+  { project: 'Porto 2 Life', category: 'Faixa 2', liner: 884.81, closer: 884.81, ftb: 1769.62 },
+  { project: 'Porto 2 Life', category: 'Faixa 3', liner: 1132.83, closer: 1132.83, ftb: 2265.66 },
+  { project: 'Porto Alto', category: 'Faixa 1', liner: 689.17, closer: 689.17, ftb: 1378.34 },
+  { project: 'Porto Alto', category: 'Faixa 2', liner: 960.66, closer: 960.66, ftb: 1921.32 },
+  { project: 'Porto Alto', category: 'Faixa 3', liner: 1283.41, closer: 1283.41, ftb: 2566.82 },
+  { project: 'Premium', category: '1 Quarto', liner: 1101.39, closer: 1101.39, ftb: 2202.78 },
+  { project: 'Premium', category: '2 Quartos', liner: 1596.79, closer: 1596.79, ftb: 3193.58 },
+  { project: 'Premium', category: 'Smart (BL 02)', liner: 889.24, closer: 889.24, ftb: 1778.48 },
+  { project: 'Pyrénées', category: '2 Semanas', liner: 564.24, closer: 564.24, ftb: 1128.48 },
 ];
 
 export const PROJECT_PRICING: Record<string, { label: string; value: number }[]> = {
@@ -181,9 +191,12 @@ export const getCategoriesByProject = (project: string) => {
 };
 
 export const getTableCommission = (project: string, category: string, role: RoleType, saleDate: string): number => {
-  const is2026OrLater = saleDate >= '2026-01-01';
-  const dataset = is2026OrLater ? COMMISSION_DATA_2026 : COMMISSION_DATA_2025;
+  // A partir de 01/01/2026 utiliza a tabela de 2026.
+  // Até 31/01/2025 utiliza a tabela de 2025.
+  const is2026Table = saleDate >= '2026-01-01';
+  const dataset = is2026Table ? COMMISSION_DATA_2026 : COMMISSION_DATA_2025;
   const entry = dataset.find(item => item.project === project && item.category === category);
+  
   if (!entry) return 0;
 
   switch (role) {
