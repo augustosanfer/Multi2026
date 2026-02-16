@@ -11,19 +11,29 @@ interface PricingProps {
 const Pricing: React.FC<PricingProps> = ({ onChoosePlan, currentUser }) => {
   
   const handlePlanSelection = (link: string) => {
-    // Se o usuário não estiver logado, abre o modal de login
-    if (!currentUser) {
-      onChoosePlan();
+    // Validação básica para garantir que o link existe e é uma URL
+    if (!link || !link.startsWith('http')) {
+      console.error("Link do Stripe inválido em constants.ts");
+      alert("Erro na configuração: O link de pagamento não foi encontrado ou está incompleto no arquivo constants.ts.");
       return;
     }
 
-    // Se estiver logado, redireciona para o Stripe com o e-mail pré-preenchido (opcional)
-    const stripeUrl = new URL(link);
-    if (currentUser.email) {
-      stripeUrl.searchParams.append('prefilled_email', currentUser.email);
+    try {
+      const stripeUrl = new URL(link);
+      
+      // Se o usuário estiver logado, anexamos o e-mail para pré-preencher no Stripe
+      if (currentUser && currentUser.email) {
+        stripeUrl.searchParams.append('prefilled_email', currentUser.email);
+        stripeUrl.searchParams.append('client_reference_id', currentUser.id);
+      }
+      
+      // Redireciona o usuário para a página de pagamento do Stripe
+      window.location.href = stripeUrl.toString();
+    } catch (err) {
+      console.error("Erro ao processar URL:", err);
+      // Fallback para redirecionamento simples caso o construtor de URL falhe
+      window.location.href = link;
     }
-    
-    window.location.href = stripeUrl.toString();
   };
 
   return (
