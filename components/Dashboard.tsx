@@ -10,7 +10,6 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ sales, onAddSale }) => {
-  // Período padrão solicitado: 01/01/2026 até 31/12/2026
   const [startDate, setStartDate] = useState('2026-01-01');
   const [endDate, setEndDate] = useState('2026-12-31');
 
@@ -75,7 +74,7 @@ const Dashboard: React.FC<DashboardProps> = ({ sales, onAddSale }) => {
           <div className="bg-cardBg border border-gray-800 p-2 rounded-xl flex flex-wrap items-center gap-2 shadow-lg">
              <div className="flex items-center gap-2 px-3 border-r border-gray-800 mr-1">
                 <Filter size={16} className="text-neon" />
-                <span className="text-sm font-bold text-white">Filtro Período</span>
+                <span className="text-sm font-bold text-white">Período</span>
              </div>
              <div className="flex items-center gap-2 bg-darkBg border border-gray-700 rounded-lg px-3 py-1.5">
                 <Calendar size={14} className="text-gray-500" />

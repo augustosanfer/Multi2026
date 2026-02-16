@@ -29,6 +29,16 @@ export const authService = {
     return { data, error };
   },
 
+  signInWithMagicLink: async (email: string) => {
+    const { data, error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: window.location.origin,
+      }
+    });
+    return { data, error };
+  },
+
   signOut: async () => {
     const { error } = await supabase.auth.signOut();
     return { error };

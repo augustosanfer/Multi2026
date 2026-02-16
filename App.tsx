@@ -26,10 +26,18 @@ function App() {
   const [pendingSaleData, setPendingSaleData] = useState<Partial<Sale> | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [adminUsersList, setAdminUsersList] = useState<User[]>([]);
+  const [isSignupAllowed, setIsSignupAllowed] = useState(false);
 
-  // Verifica a sessão ao iniciar
+  // Verifica a sessão ao iniciar e parâmetros da URL
   useEffect(() => {
     let mounted = true;
+
+    // Checar se existe o parâmetro secreto na URL para liberar cadastro
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('show_signup') === 'true') {
+      setIsSignupAllowed(true);
+      setShowAuthModal(true); // Abre o modal automaticamente se usar o link
+    }
 
     const checkSession = async () => {
       try {
@@ -274,7 +282,11 @@ function App() {
             <Pricing onChoosePlan={handleLoginClick} currentUser={currentUser} />
           </main>
           {showAuthModal && (
-            <Auth onSuccess={handleAuthSuccess} onCancel={() => setShowAuthModal(false)} />
+            <Auth 
+              onSuccess={handleAuthSuccess} 
+              onCancel={() => setShowAuthModal(false)} 
+              allowRegistration={isSignupAllowed}
+            />
           )}
         </>
       ) : (
