@@ -67,7 +67,7 @@ const Auth: React.FC<AuthProps> = ({ onSuccess, onCancel, allowRegistration = fa
     } catch (err: any) {
       console.error("Erro na autenticação:", err);
       setIsNetworkError(true);
-      setError('Não foi possível conectar ao servidor. Por favor, verifique sua internet ou desative bloqueadores de anúncios (AdBlock) para este site.');
+      setError('Não foi possível conectar ao servidor. Verifique sua conexão.');
       setIsLoading(false);
     }
   };
@@ -81,14 +81,14 @@ const Auth: React.FC<AuthProps> = ({ onSuccess, onCancel, allowRegistration = fa
           </div>
           <h2 className="text-2xl font-bold text-white mb-4">Link Enviado!</h2>
           <p className="text-gray-400 mb-8 leading-relaxed">
-            Enviamos um acesso exclusivo para <strong className="text-white">{email}</strong>. 
-            Clique no botão dentro do e-mail para entrar instantaneamente.
+            Enviamos um acesso para <strong className="text-white">{email}</strong>. 
+            Verifique sua caixa de entrada.
           </p>
           <button 
             onClick={onCancel}
             className="w-full py-4 bg-gray-800 text-white font-bold rounded-2xl hover:bg-gray-700 transition-all"
           >
-            Entendido
+            Fechar
           </button>
         </div>
       </div>
@@ -100,15 +100,15 @@ const Auth: React.FC<AuthProps> = ({ onSuccess, onCancel, allowRegistration = fa
       <div className="w-full max-w-md bg-cardBg border border-gray-800 rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-neon/50 to-transparent"></div>
         
-        <div className="text-center mb-10">
-          <div className="w-14 h-14 bg-neon/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-neon border border-neon/20">
-            {isLogin ? (useMagicLink ? <Wand2 size={28} /> : <Handshake size={28} />) : <UserPlus size={28} />}
+        <div className="text-center mb-8">
+          <div className="w-14 h-14 bg-neon/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-neon border border-neon/20">
+            {isLogin ? (useMagicLink ? <Wand2 size={28} /> : <Lock size={28} />) : <UserPlus size={28} />}
           </div>
           <h2 className="text-2xl font-black text-white tracking-tight">
-            {isLogin ? (useMagicLink ? 'Link Mágico' : 'Acessar Conta') : 'Criar Conta'}
+            {isLogin ? 'Login' : 'Criar Conta'}
           </h2>
-          <p className="text-gray-500 text-sm mt-2 font-medium">
-            {isLogin ? (useMagicLink ? 'Receba um link de acesso por e-mail.' : 'Entre com suas credenciais.') : 'Preencha os dados abaixo.'}
+          <p className="text-gray-500 text-sm mt-1">
+            {isLogin ? 'Informe seu e-mail e senha para entrar.' : 'Crie seu perfil profissional.'}
           </p>
         </div>
 
@@ -118,7 +118,7 @@ const Auth: React.FC<AuthProps> = ({ onSuccess, onCancel, allowRegistration = fa
               <Mail className="absolute left-4 top-4 text-gray-500 group-focus-within:text-neon transition-colors" size={20} />
               <input 
                 type="text" 
-                placeholder="Seu Nome Completo" 
+                placeholder="Nome Completo" 
                 required 
                 className="w-full bg-darkBg border border-gray-800 rounded-2xl py-4 pl-12 pr-4 text-white focus:border-neon focus:ring-1 focus:ring-neon/20 outline-none transition-all" 
                 value={name} 
@@ -130,7 +130,7 @@ const Auth: React.FC<AuthProps> = ({ onSuccess, onCancel, allowRegistration = fa
             <Mail className="absolute left-4 top-4 text-gray-500 group-focus-within:text-neon transition-colors" size={20} />
             <input 
               type="email" 
-              placeholder="Seu melhor e-mail" 
+              placeholder="Seu e-mail" 
               required 
               className="w-full bg-darkBg border border-gray-800 rounded-2xl py-4 pl-12 pr-4 text-white focus:border-neon focus:ring-1 focus:ring-neon/20 outline-none transition-all" 
               value={email} 
@@ -143,7 +143,7 @@ const Auth: React.FC<AuthProps> = ({ onSuccess, onCancel, allowRegistration = fa
               <Lock className="absolute left-4 top-4 text-gray-500 group-focus-within:text-neon transition-colors" size={20} />
               <input 
                 type="password" 
-                placeholder="Senha de acesso" 
+                placeholder="Sua senha" 
                 required 
                 className="w-full bg-darkBg border border-gray-800 rounded-2xl py-4 pl-12 pr-4 text-white focus:border-neon focus:ring-1 focus:ring-neon/20 outline-none transition-all" 
                 value={password} 
@@ -166,20 +166,20 @@ const Auth: React.FC<AuthProps> = ({ onSuccess, onCancel, allowRegistration = fa
           >
             {isLoading ? <Loader2 className="animate-spin" /> : (
               <>
-                {isLogin ? (useMagicLink ? 'Enviar Link de Acesso' : 'Entrar Agora') : 'Criar Minha Conta'}
+                {isLogin ? 'Entrar Agora' : 'Finalizar Cadastro'}
                 <ArrowRight size={18} />
               </>
             )}
           </button>
         </form>
 
-        <div className="mt-8 flex flex-col gap-4 items-center">
+        <div className="mt-6 flex flex-col gap-3 items-center">
           {isLogin && (
             <button 
               onClick={() => { setUseMagicLink(!useMagicLink); setError(''); setIsNetworkError(false); }}
-              className="text-xs font-bold text-gray-500 hover:text-white flex items-center gap-2 transition-colors"
+              className="text-xs font-bold text-gray-500 hover:text-white transition-colors"
             >
-              {useMagicLink ? 'Usar senha tradicional' : 'Entrar com Link Mágico (Sem Senha)'}
+              {useMagicLink ? 'Usar senha tradicional' : 'Entrar sem senha (Link Mágico)'}
             </button>
           )}
 
@@ -188,12 +188,8 @@ const Auth: React.FC<AuthProps> = ({ onSuccess, onCancel, allowRegistration = fa
               onClick={() => { setIsLogin(!isLogin); setUseMagicLink(false); setError(''); setIsNetworkError(false); }}
               className="text-sm font-bold text-neon hover:text-neon/80 transition-colors"
             >
-              {isLogin ? 'Não tem acesso? Cadastre-se aqui' : 'Já tem uma conta? Faça login'}
+              {isLogin ? 'Não tem uma conta? Cadastre-se' : 'Já possui conta? Faça Login'}
             </button>
-          )}
-          
-          {!allowRegistration && isLogin && (
-            <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest">Acesso Restrito a Assinantes</p>
           )}
         </div>
 
@@ -201,7 +197,6 @@ const Auth: React.FC<AuthProps> = ({ onSuccess, onCancel, allowRegistration = fa
           onClick={onCancel} 
           className="absolute top-6 right-6 text-gray-600 hover:text-white transition-colors p-2"
         >
-          <span className="sr-only">Fechar</span>
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12"></path>
           </svg>

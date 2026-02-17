@@ -1,5 +1,5 @@
 import React from 'react';
-import { Handshake, CheckCircle2 } from 'lucide-react';
+import { Handshake, CheckCircle2, ArrowRight, Lock } from 'lucide-react';
 
 interface HeroProps {
   onCtaClick: () => void;
@@ -15,7 +15,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neon/10 border border-neon/20 mb-6">
                 <span className="w-2 h-2 rounded-full bg-neon animate-pulse"></span>
-                <span className="text-neon text-xs font-bold tracking-wider uppercase">Acesso Restrito • Gestão Profissional</span>
+                <span className="text-neon text-xs font-bold tracking-wider uppercase">Versão 2026 • Gestão Profissional</span>
               </div>
               <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
                 Controle suas vendas e <span className="text-neon">comissões pro-rata</span> automaticamente.
@@ -24,7 +24,24 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
                 O MultiCota calcula exatamente quanto você recebe da entrada e projeta seu fluxo de caixa futuro de forma inteligente e segura.
               </p>
               
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="flex flex-col sm:flex-row gap-4 mb-10">
+                <button 
+                  onClick={onCtaClick}
+                  className="px-8 py-4 bg-neon text-darkBg font-black rounded-2xl hover:bg-neon/90 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(124,255,79,0.2)]"
+                >
+                  <Lock size={20} />
+                  Acessar Plataforma
+                  <ArrowRight size={20} />
+                </button>
+                <a 
+                  href="#plans"
+                  className="px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/10 transition-all flex items-center justify-center"
+                >
+                  Ver Planos
+                </a>
+              </div>
+              
+              <div className="flex flex-wrap gap-3">
                  {["Cálculo Pro-Rata", "Fluxo de Caixa", "Gestão de Recebíveis"].map((feat, i) => (
                    <div key={i} className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-sm text-gray-300">
                       <CheckCircle2 size={14} className="text-neon" /> {feat}
