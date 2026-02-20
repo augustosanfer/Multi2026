@@ -46,7 +46,7 @@ const Import: React.FC<ImportProps> = ({ onReviewSale }) => {
     Papa.parse(selectedFile, {
       header: true,
       skipEmptyLines: true,
-      complete: (results) => {
+      complete: (results: any) => {
         try {
           const parsedData = results.data.map((row: any) => {
             const getVal = (keys: string[]) => {
@@ -92,7 +92,7 @@ const Import: React.FC<ImportProps> = ({ onReviewSale }) => {
             } as Partial<Sale>;
           });
 
-          const validSales = parsedData.filter(s => s.clientName && s.project);
+          const validSales = parsedData.filter((s: any) => s.clientName && s.project);
           
           if (validSales.length === 0) {
             setError('Não foram encontrados dados válidos. Verifique se as colunas (cliente, projeto, etc) existem.');

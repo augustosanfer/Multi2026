@@ -5,7 +5,7 @@ export const aiService = {
   analyzeSales: async (sales: Sale[]) => {
     try {
       // Verifica se a API KEY existe no ambiente
-      const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : '';
+      const apiKey = process.env.GEMINI_API_KEY;
       
       if (!apiKey) {
         console.warn("AI Service: API_KEY não encontrada.");
