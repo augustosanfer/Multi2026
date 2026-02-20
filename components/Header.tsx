@@ -17,16 +17,30 @@ const Header: React.FC<HeaderProps> = ({ onLoginClick, isLoggedIn, onLogout }) =
           </div>
           <strong className="text-xl tracking-tight font-bold text-white">MultiCota</strong>
         </div>
-        <nav className="hidden md:flex gap-6 items-center">
+        
+        <div className="flex items-center gap-4">
           {!isLoggedIn ? (
-            <>
-              <button onClick={onLoginClick} className="ml-2 px-5 py-2 rounded-xl bg-neon text-darkBg font-bold hover:bg-neon/90 transition-all shadow-[0_0_10px_rgba(124,255,79,0.1)]">Entrar</button>
-            </>
+            <button 
+              onClick={onLoginClick} 
+              className="px-5 py-2 rounded-xl bg-neon text-darkBg font-bold hover:bg-neon/90 transition-all shadow-[0_0_10px_rgba(124,255,79,0.1)] text-sm md:text-base"
+            >
+              Entrar
+            </button>
           ) : (
-             <button onClick={onLogout} className="ml-2 px-5 py-2 rounded-xl border border-red-500/40 text-red-400 font-bold hover:bg-red-500/10 transition-all">Sair</button>
+            <nav className="hidden md:flex items-center">
+              <button 
+                onClick={onLogout} 
+                className="px-5 py-2 rounded-xl border border-red-500/40 text-red-400 font-bold hover:bg-red-500/10 transition-all text-sm md:text-base"
+              >
+                Sair
+              </button>
+            </nav>
           )}
-        </nav>
-        <div className="md:hidden text-gray-300"><Menu /></div>
+          
+          <div className="md:hidden text-gray-300">
+            <Menu size={24} />
+          </div>
+        </div>
       </div>
     </header>
   );
